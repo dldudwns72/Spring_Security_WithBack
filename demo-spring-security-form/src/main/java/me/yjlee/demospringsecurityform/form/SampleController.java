@@ -1,5 +1,6 @@
 package me.yjlee.demospringsecurityform.form;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,10 @@ public class SampleController {
 //    principal 사용자 정보를 담고있는 객체, 값이 없을 경우 null
 //    spring-boot-starter-security maven 설정 시 최초 화면이 로그인으로 나오며 기본 아이디 : 'user' 비번 : "컨솔창에 나오는 GUID"
 //    모든 요청은 인증을 필요로 함
+
+    @Autowired
+    SampleService sampleService;
+
 
     @GetMapping("/")
     public String index(Model model, Principal principal){
@@ -35,6 +40,7 @@ public class SampleController {
     @GetMapping("/dashboard")
     public String dashboard(Model model, Principal principal){
         model.addAttribute("message","Hello, " + principal.getName());
+        sampleService.dashboard();
         return "dashboard";
     }
 

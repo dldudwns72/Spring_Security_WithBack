@@ -81,7 +81,7 @@ public class AccountControllerTest {
 
     @Test
     @Transactional
-    public void login() throws Exception {
+    public void login_success() throws Exception {
         String username = "YoungJun";
         String password = "123";
 

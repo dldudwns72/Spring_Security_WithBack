@@ -22,7 +22,6 @@ public class AccountService implements UserDetailsService {
     // username을 받아서 user 정보를 꺼내온다.
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // create mehtod 단축기 뭐지;
         Account account = accountRepository.findByUsername(username);
         if (account == null) {
             throw new UsernameNotFoundException(username);
