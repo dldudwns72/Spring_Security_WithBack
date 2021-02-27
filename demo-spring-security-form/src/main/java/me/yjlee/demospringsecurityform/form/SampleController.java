@@ -1,5 +1,7 @@
 package me.yjlee.demospringsecurityform.form;
 
+import me.yjlee.demospringsecurityform.account.AccountContext;
+import me.yjlee.demospringsecurityform.account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,9 @@ public class SampleController {
 
     @Autowired
     SampleService sampleService;
+
+    @Autowired
+    AccountRepository accountRepository;
 
 
     @GetMapping("/")
@@ -40,6 +45,7 @@ public class SampleController {
     @GetMapping("/dashboard")
     public String dashboard(Model model, Principal principal){
         model.addAttribute("message","Hello, " + principal.getName());
+        AccountContext.setAccount(accountRepository.findByUsername(principal.getName()));
         sampleService.dashboard();
         return "dashboard";
     }
