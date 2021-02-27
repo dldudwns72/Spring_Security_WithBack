@@ -30,7 +30,7 @@ public class AccountService implements UserDetailsService {
         return User.builder()
                 .username(account.getUsername())
                 .password(account.getPassword())
-                .roles(account.getRole())
+                .roles(account.getRole()) // roles("ADMIN","USER") 이런 식으로 설정하면 Role N개 설정 가능
                 .build();
     }
 
