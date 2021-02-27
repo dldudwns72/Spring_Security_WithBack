@@ -1,6 +1,8 @@
 package me.yjlee.demospringsecurityform.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -10,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 // SpringWebSecurity 설정
 @Configuration
 @EnableWebSecurity
+@Order(Ordered.LOWEST_PRECEDENCE -10) // 실행 순서 결정
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
