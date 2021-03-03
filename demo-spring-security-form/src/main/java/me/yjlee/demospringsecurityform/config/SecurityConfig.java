@@ -53,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/admin").hasRole("ADMIN") // ADMIN 이라는 역할을 가질때만 실행
                 .mvcMatchers("/user").hasRole("USER") // USER 이라는 역할을 가질때만 실행
                 .anyRequest().authenticated() // 기타 나머지에 대한 요청은 인증만 하면 접근 가능하다
+                //.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() // 이 방법으로 static 자원에 대한 인증 필터 제외를 설정 할 수있지만 아래 WebSecurity로 설정 권유
                 .expressionHandler(expressionHandler());
 
 //        and()를 통하지 않고 따로 선언 해주어도 된다.
