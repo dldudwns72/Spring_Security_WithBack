@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.access.expression.WebExpressionVoter;
@@ -59,6 +60,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        and()를 통하지 않고 따로 선언 해주어도 된다.
         http.formLogin(); // login, loginout 기능
         http.httpBasic(); // http 통신 지원
+
+        SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL); // 현재 Thread에서 하위 Thread에게 SecurityContext 공유 
     }
 
     @Override

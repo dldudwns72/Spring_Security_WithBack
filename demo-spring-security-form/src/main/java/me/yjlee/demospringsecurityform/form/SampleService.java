@@ -12,6 +12,9 @@ import java.util.Collection;
 
 @Service
 public class SampleService {
+    public static void asyncService() {
+        System.out.println("Async Service is called");
+    }
     public void dashboard(){
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        Object principal =  authentication.getPrincipal();
