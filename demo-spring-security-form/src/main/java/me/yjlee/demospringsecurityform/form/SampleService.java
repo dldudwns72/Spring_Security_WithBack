@@ -2,6 +2,8 @@ package me.yjlee.demospringsecurityform.form;
 
 import me.yjlee.demospringsecurityform.account.Account;
 import me.yjlee.demospringsecurityform.account.AccountContext;
+import me.yjlee.demospringsecurityform.common.SecurityLogger;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,7 +14,10 @@ import java.util.Collection;
 
 @Service
 public class SampleService {
+
+    @Async
     public static void asyncService() {
+        SecurityLogger.log("Async Service");
         System.out.println("Async Service is called");
     }
     public void dashboard(){
