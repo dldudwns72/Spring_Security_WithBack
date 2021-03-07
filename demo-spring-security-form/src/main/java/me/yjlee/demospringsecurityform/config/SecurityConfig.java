@@ -62,6 +62,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic(); // http 통신 지원
 
 //        http.csrf().disable(); // csrf를 사용하지 않겠다 -> csrf 토큰을 발행하지 않음
+        http.logout()
+                .logoutUrl("/logout") // logout URL을 변경, default logout URL을 바꿀 수 있다.
+                .logoutSuccessUrl("/") // logout 이후 다른 페이지로 redirect
+                //.addLogoutHandler() // logout후 부가적인 handler 처리
+        ;
 
         SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL); // 현재 Thread에서 하위 Thread에게 SecurityContext 공유
     }
