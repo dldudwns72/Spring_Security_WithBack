@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 요청에 대한 인가
         http.authorizeRequests()
-                .mvcMatchers("/", "/info", "/account/**").permitAll() // 권한 상관없이 실행, /** 하면 뒤에 내용 다 허용
+                .mvcMatchers("/", "/info", "/account/**","/signup").permitAll() // 권한 상관없이 실행, /** 하면 뒤에 내용 다 허용
                 .mvcMatchers("/admin").hasRole("ADMIN") // ADMIN 이라는 역할을 가질때만 실행
                 .mvcMatchers("/user").hasRole("USER") // USER 이라는 역할을 가질때만 실행
                 .anyRequest().authenticated() // 기타 나머지에 대한 요청은 인증만 하면 접근 가능하다
@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin(); // login, loginout 기능
         http.httpBasic(); // http 통신 지원
 
-        http.csrf().disable(); // csrf를 사용하지 않겠다 -> csrf 토큰을 발행하지 않음
+//        http.csrf().disable(); // csrf를 사용하지 않겠다 -> csrf 토큰을 발행하지 않음
 
         SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL); // 현재 Thread에서 하위 Thread에게 SecurityContext 공유
     }
