@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+<!--    Title 에있는게 상위 탭에서 나타난다 -->
+    <title>Logout</title>
+</head>
+<body>
+<h1>Login</h1>
+<div th:if="${param.error}">
+    Invalid username or password
+</div>
+<form action ="/logout" method="post" th:action="@{/logout}">
+    <p><input type="submit" value="Logout"></p>
+</form>
+</body>
+</html>

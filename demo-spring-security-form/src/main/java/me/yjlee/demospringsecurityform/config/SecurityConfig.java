@@ -59,9 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 //        and()를 통하지 않고 따로 선언 해주어도 된다.
         http.formLogin()
-                .usernameParameter("my-username")
-                .passwordParameter("my-password")
+//                .usernameParameter("my-username")
+//                .passwordParameter("my-password")
                 .loginPage("/login")
+                .permitAll()
         ; // login, loginout 기능
         http.httpBasic(); // http 통신 지원
 
