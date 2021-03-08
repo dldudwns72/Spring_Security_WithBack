@@ -21,7 +21,6 @@ public class DemoSpringSecurityFormApplication {
 	}
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(DemoSpringSecurityFormApplication.class, args);
 	}
 

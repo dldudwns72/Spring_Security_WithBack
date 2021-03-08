@@ -58,7 +58,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .expressionHandler(expressionHandler());
 
 //        and()를 통하지 않고 따로 선언 해주어도 된다.
-        http.formLogin(); // login, loginout 기능
+        http.formLogin()
+                .usernameParameter("my-username")
+                .passwordParameter("my-password")
+                .loginPage("/login")
+        ; // login, loginout 기능
         http.httpBasic(); // http 통신 지원
 
 //        http.csrf().disable(); // csrf를 사용하지 않겠다 -> csrf 토큰을 발행하지 않음
