@@ -66,6 +66,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         ; // login, loginout 기능
         http.httpBasic(); // http 통신 지원
 
+        http.sessionManagement()
+                .sessionFixation().changeSessionId()
+                .maximumSessions(1) // 세션 최대 개수 설정
+                .maxSessionsPreventsLogin(false) // 추가 로그인 설정
+                .expiredUrl("/login") // 세션 만료 시 이동할 URL
+//                .invalidSessionUrl("/error") // 유효하지 않은 세션일 경우 보낼 URL
+
+        ;
+
 //        http.csrf().disable(); // csrf를 사용하지 않겠다 -> csrf 토큰을 발행하지 않음
         http.logout()
                 .logoutUrl("/logout") // logout URL을 변경, default logout URL을 바꿀 수 있다.
