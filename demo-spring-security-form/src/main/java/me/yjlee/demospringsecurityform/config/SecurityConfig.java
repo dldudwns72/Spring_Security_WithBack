@@ -1,5 +1,6 @@
 package me.yjlee.demospringsecurityform.config;
 
+import me.yjlee.demospringsecurityform.common.LoggingFilter;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -22,6 +23,7 @@ import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.access.expression.WebExpressionVoter;
+import org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -54,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.addFilterBefore(new LoggingFilter(), WebAsyncManagerIntegrationFilter.class); // 성능 측정시 사용됨
 
         // 요청에 대한 인가
         http.authorizeRequests()
@@ -71,7 +74,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .permitAll()
         ; // login, loginout 기능
+
         http.httpBasic(); // http 통신 지원
+
+        // Session 과 같은 기능으로 사용자의 정보가 Token 형식으로 들어가 있다, 사용자 정보를 저장 시 체크 여부 확인 할 수 있을듯
+//        http.rememberMe()
+//                .userDetailsService(accountService)
+//                .key("rememver");
 
         http.sessionManagement()
                 .sessionFixation().changeSessionId()
